@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import MyVideoContext from "./contextApi/CloudinaryContext";
+import { PulseLoader } from "react-spinners";
 
 const Uploaded = () => {
   const { getVideoUrl, videoUrl, getLocalUrl, localUrl } =
@@ -38,10 +39,16 @@ const Uploaded = () => {
     <div style={{ display: "flex", flexDirection: "column" }}>
       <input type="file" />
       <button
-        style={{ cursor: "pointer", marginTop: "20px" }}
+        style={{
+          cursor: "pointer",
+          marginTop: "20px",
+          padding: "10px",
+          display: "flex",
+          justifyContent: "center",
+        }}
         onClick={handleUploadClick}
       >
-        Upload Video
+        {videoUrl ? <PulseLoader size={5} /> : "Upload Video"}
       </button>
       <div>
         <h1>Actual Video</h1>
