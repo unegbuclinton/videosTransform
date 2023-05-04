@@ -6,7 +6,14 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import { crop, fill } from "@cloudinary/url-gen/actions/resize";
 import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
 
-const VideoTransformation = ({ xAxis, yAxis, public_id, smallOne }) => {
+const VideoTransformation = ({
+  xAxis,
+  yAxis,
+  width,
+  height,
+  public_id,
+  smallOne,
+}) => {
   // Create and configure your Cloudinary instance.
   const cld = new Cloudinary({
     cloud: {
@@ -20,8 +27,10 @@ const VideoTransformation = ({ xAxis, yAxis, public_id, smallOne }) => {
   //   myVideo.resize(fill().width(375).height(350)).roundCorners(byRadius(30)); // Round the corners.
   smallVideo.resize(fill().width(150).height(150)).roundCorners(byRadius(30));
 
-  myVideo.resize(crop().width(375).height(375).x(xAxis).y(yAxis));
+  myVideo.resize(fill().width(width).height(height).x(xAxis).y(yAxis));
+  // myVideo.resize(crop().width(350).height(350).x(302).y(189));
 
+  console.log(myVideo.toURL());
   return (
     <div style={{ position: "relative" }}>
       {smallOne && (

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import MyVideoContext from "./contextApi/CloudinaryContext";
 import { PulseLoader } from "react-spinners";
+import VideoCropTool from "./VideoCrop";
 
 const Uploaded = () => {
   const { getVideoUrl, videoUrl, getLocalUrl, localUrl } =
@@ -36,7 +37,7 @@ const Uploaded = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column", width: "50%" }}>
       <input type="file" />
       <button
         style={{
@@ -53,7 +54,8 @@ const Uploaded = () => {
       <div>
         <h1>Actual Video</h1>
         {videoUrl && (
-          <video src={localUrl} alt="Uploaded" controls width={350} autoPlay />
+          // <video src={localUrl} alt="Uploaded" controls width={350} autoPlay />
+          <VideoCropTool src={localUrl} />
         )}
       </div>
     </div>
